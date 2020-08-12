@@ -6,11 +6,12 @@ pipeline {
     }
   }
   environment {
-    CREDS = credentials('aws-creds')
+    CREDS = credentials('mona-tf')
     AWS_ACCESS_KEY_ID = "${CREDS_USR}"
     AWS_SECRET_ACCESS_KEY = "${CREDS_PSW}"
-    OWNER = 'bryan'
+    OWNER = 'mona'
     PROJECT_NAME = 'web-server'
+    TF_NAMESPACE="mona"
   }
   stages {
     stage("build") {
@@ -21,7 +22,7 @@ pipeline {
   }
   post {
     success {
-        build quietPeriod: 0, wait: false, job: 'bryan-jenkins-lab-2-tf'  
+        build quietPeriod: 0, wait: false, job: 'mona-jenkins-lab-2-tf'  
     }
   }
 }
